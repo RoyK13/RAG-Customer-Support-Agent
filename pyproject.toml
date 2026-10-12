@@ -1,0 +1,10 @@
+[project]
+name = "support-agent"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["integration: needs the Docker services (Qdrant and Postgres) running"]
+addopts = "-m 'not integration'"
+filterwarnings = ["ignore::DeprecationWarning", "ignore:Payload indexes have no effect:UserWarning"]

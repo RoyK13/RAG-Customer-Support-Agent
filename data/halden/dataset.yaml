@@ -1,0 +1,20 @@
+name: halden
+display_name: Halden Home Appliances
+description: Support documents for a fictional appliance company. Warranty, returns, shipping, installation, error codes, billing, and account help.
+source:
+  label: Fictional documents written for this demo
+  url: null
+license:
+  name: Fictional content, written for this project
+  url: null
+notice: null
+docs_dir: docs
+# How each chunk's `source` field is built. "path" stores the file path
+# relative to the dataset directory.
+source_url:
+  style: path
+markdown_flavor: plain
+chunking:
+  max_chars: 1600
+  min_chars: 200
+persona: You are the customer support agent for Halden Home Appliances. You help customers with warranty, returns, shipping, installation, troubleshooting, billing, and account questions.

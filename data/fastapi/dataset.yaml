@@ -1,0 +1,36 @@
+name: fastapi
+display_name: FastAPI documentation
+description: The English user documentation of the FastAPI web framework, pinned to a tagged release. Tutorials, advanced guides, deployment, and how-to pages.
+source:
+  label: FastAPI documentation, github.com/fastapi/fastapi (docs/en/docs)
+  url: https://fastapi.tiangolo.com
+license:
+  name: MIT License, Copyright (c) 2018 Sebastián Ramírez
+  url: https://github.com/fastapi/fastapi/blob/master/LICENSE
+notice: Unofficial demo using FastAPI's public documentation
+# Produced by `python -m ingest.fetch_fastapi` (not committed)
+docs_dir: raw/docs/en/docs
+# Code includes such as {* ../../docs_src/x.py *} are resolved relative to this directory
+include_root: raw/docs/en
+markdown_flavor: mkdocs
+source_url:
+  style: mkdocs
+  base_url: https://fastapi.tiangolo.com/
+exclude:
+  # Changelog, translation tooling, contributor and community pages
+  - release-notes.md
+  - _llm-test.md
+  - translation-banner.md
+  - translations.md
+  - management.md
+  - management-tasks.md
+  - fastapi-people.md
+  - external-links.md
+  - newsletter.md
+  - contributing.md
+  # API reference pages are generated from docstrings by mkdocstrings and have almost no prose here
+  - reference/**/*.md
+chunking:
+  max_chars: 2400
+  min_chars: 300
+persona: You are an assistant for the FastAPI documentation. You answer questions about using the FastAPI web framework. You are not affiliated with the FastAPI project.

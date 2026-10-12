@@ -1,0 +1,6 @@
+-r requirements.txt
+pytest==9.1.1
+ragas==0.4.3
+deepeval==2.9.3
+langchain-openai==1.1.9
+langchain-community==0.4.2

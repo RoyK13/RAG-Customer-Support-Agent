@@ -1,0 +1,26 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    FASTEMBED_CACHE_PATH=/opt/fastembed
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Download the local embedding and reranker models at build time so the container starts offline.
+ARG EMBEDDING_MODEL=BAAI/bge-small-en-v1.5
+ARG RERANKER_MODEL=Xenova/ms-marco-MiniLM-L-6-v2
+RUN python -c "from fastembed import TextEmbedding; TextEmbedding('${EMBEDDING_MODEL}')"  && python -c "from fastembed.rerank.cross_encoder import TextCrossEncoder; TextCrossEncoder('${RERANKER_MODEL}')"
+
+COPY app ./app
+COPY ingest ./ingest
+COPY data ./data
+
+RUN useradd --create-home appuser && chown -R appuser /app /opt/fastembed
+USER appuser
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
